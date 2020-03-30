@@ -1,0 +1,299 @@
+[2020-03-18 09:30:23,273] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:30:44,962] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:30:44,962] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:31:01,750] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:31:01,750] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:35:03,949] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:35:03,949] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:35:03,949] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:35:32,364] {selector_events.py:53} DEBUG - Using selector: SelectSelector
+[2020-03-18 09:35:32,364] {selector_events.py:53} DEBUG - Using selector: SelectSelector
+[2020-03-18 09:35:32,364] {selector_events.py:53} DEBUG - Using selector: SelectSelector
+[2020-03-18 09:36:39,548] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 65, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:38:37,621] {autoreload.py:222} INFO - C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py changed, reloading.
+[2020-03-18 09:38:37,622] {selector_events.py:53} DEBUG - Using selector: SelectSelector
+[2020-03-18 09:39:12,029] {autoreload.py:222} INFO - C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py changed, reloading.
+[2020-03-18 09:39:12,030] {selector_events.py:53} DEBUG - Using selector: SelectSelector
+[2020-03-18 09:39:46,810] {log.py:228} ERROR - Internal Server Error: /esail/passage/
+Traceback (most recent call last):
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\PycharmProjects\django_web\passage\esail\views.py", line 25, in passage
+    final_route,final_route_marker,passage_plan_dict = passage_main.main()
+  File "C:\PycharmProjects\django_web\passage\esail\algm\passage_main.py", line 66, in main
+    mongo_db_depth_info_df = mongo_db.get_depth_path(lat_start, lat_dest, long_start, long_dest, depth, '$gte')
+  File "C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py", line 85, in get_depth_path
+    df = round(pd.DataFrame(list(valid_nodes)),1)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\cursor.py", line 1050, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 490, in get_server_session
+    None)
+  File "C:\PycharmProjects\django_web\venv\lib\site-packages\pymongo\topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: 211.220.27.191:27017: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다,211.220.27.191:27019: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2020-03-18 09:55:20,259] {autoreload.py:222} INFO - C:\PycharmProjects\django_web\passage\esail\algm\mongo_database.py changed, reloading.
+[2020-03-18 09:55:20,260] {selector_events.py:53} DEBUG - Using selector: SelectSelector
