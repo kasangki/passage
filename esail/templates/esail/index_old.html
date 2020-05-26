@@ -1,0 +1,97 @@
+{% extends "./base.html" %}
+{% block contents %}
+
+<script lang="javascript">
+
+
+function getSelectStartValue(frm)
+{
+
+    start_value = frm.start_code.options[frm.start_code.selectedIndex].value;
+    $.ajax({
+        type:"get",
+        async:true,
+        url: "http://localhost:8000/esail/port_code/"+start_value,
+        dataType:"json",
+        success: function(data) {
+           temp = data['start_port_code']
+
+           var str='<ul> <li>도착항</li> <form> <select name="dest_code" id="dest_code"> <option value="none">=== 선택 ===</option> '
+           for(var name in temp) {
+               str += ' <option value= '+ name + ' > '+ temp[name]+' </option> ';
+           }
+           str +=  ' </select> </form> </ul> '
+           $('#dest_port').html(str)
+
+        }
+        });
+
+
+}
+
+
+function makePassagePlan()
+{
+
+    start_code = $('#start_code').val();
+    dest_code = $('#dest_code').val();
+    location.href="/esail/passage/12";
+
+}
+
+
+</script>
+
+
+
+
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1>Passage Plan</h1>
+  </div>
+</div>
+<div class="row mt-5">
+
+    <ul>
+        <li>출발항</li>
+    <form>
+      <select name="start_code" id="start_code"  onchange="getSelectStartValue(this.form)">
+          <option value="none">=== 선택 ===</option>
+          {% for key,value in start_port_code.items %}
+              <option value="{{key}}">{{value}}</option>
+          {% endfor %}
+      </select>
+    </form>
+    </ul>
+</div>
+<div class="row mt-5" id="dest_port">
+</div>
+<div class="row mt-5">
+<input type="button" value ="추천항로생성" onclick="javascript:makePassagePlan()">
+</div>
+
+
+
+
+
+<div class="row mt-5">
+    <ul>
+    <li><a  href="/esail/passage/12">울산 -> 광양(2개항로)</a></li>
+    <li><a  href="/esail/passage/22">울산 -> 광양(2개항로)</a></li>
+    <li><a  href="/esail/passage/13">울산 -> 광양(3개항로)</a></li>
+    <li><a  href="/esail/passage/23">울산 -> 광양(3개항로)</a></li>
+    <li><a  href="/esail/passage/33">울산 -> 광양(3개항로)</a></li>
+    <li><a  href="/esail/passage/14">울산 -> 광양(4개항로)</a></li>
+    <li><a  href="/esail/passage/24">울산 -> 광양(4개항로)</a></li>
+    <li><a  href="/esail/passage/34">울산 -> 광양(4개항로)</a></li>
+    <li><a  href="/esail/passage/44">울산 -> 광양(4개항로)</a></li>
+    <li><a  href="/esail/passage/15">울산 -> 광양(5개항로)</a></li>
+    </ul>
+</div>
+<div class="row mt-5">
+     <ul>
+    <a  href="/esail/passage/50">광양 -> 싱가폴</a>
+     </ul>
+</div>
+
+{% endblock %}
