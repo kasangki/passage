@@ -2,10 +2,30 @@ from math import cos, asin, sqrt,degrees,acos,ceil,floor
 import matplotlib.pyplot as plt
 from haversine import haversine
 
+# from __future__ import division
+
+import matplotlib.pyplot as plt
+from matplotlib import colors as mcolors
+
+
+
 
 def get_colors() :
-    color_list = ['yellow','blue','red','green','cyan']
+    color_list = ['black','rosybrown','firebrick','red','black']
     return color_list
+
+
+# 색상표 얻기
+def get_sorted_color_names() :
+    colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
+    # Sort colors by hue, saturation, value and name.
+    by_hsv = sorted((tuple(mcolors.rgb_to_hsv(mcolors.to_rgba(color)[:3])), name)
+                    for name, color in colors.items())
+    sorted_names = [name for hsv, name in by_hsv]
+    return sorted_names
+
+
 
 def is_divide_pt(x11,y11, x12,y12, x21,y21, x22,y22):
     f1 = (x12 - x11) * (y21 - y11) - (y12 - y11) * (x21 - x11)
@@ -238,6 +258,40 @@ def get_rounding(start,dest):
         y12 = ceil(y12 * filter_value) / filter_value
 
     return (y11,x11), (y12,x12)
+
+
+
+
+def make_route_distance(final_route) :
+    i = 0
+    final_route_distance = []
+    str_temp = ''
+    total_distance = 0.0
+    while i < len(final_route) :
+
+        if(i == 0) :
+            str_temp = '['+str(final_route[i][0]) + ',' + str(final_route[i][1]) +']' + '(0.0) : (' + str(total_distance) + ')'
+        else :
+            distance = round(calc_distance(final_route[i],final_route[i-1]),3)
+            total_distance = round((total_distance + distance),3)
+
+            str_temp = '['+str(final_route[i][0]) + ',' + str(final_route[i][1]) +']' + ' (' + str(distance) +') : (' + str(total_distance) + ')'
+
+
+        final_route_distance.append(str_temp)
+        i = i + 1
+
+    return final_route_distance
+
+def make_passage_plan_distance(passage_plan_dict) :
+    passage_plan_dict_distance = {}
+    for key in passage_plan_dict :
+        passage_plan_list = passage_plan_dict.get(key)
+        passage_plan_distance = make_route_distance(passage_plan_list)
+        passage_plan_dict_distance[key] = passage_plan_distance
+    return     passage_plan_dict_distance
+
+
 
 
 #print(dist_point_to_line((8,6) ,(5.0, 5.0) ,(7, 6)))

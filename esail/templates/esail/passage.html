@@ -43,18 +43,6 @@ dijkstra_data.push({{passage}});
 {% endfor %}
 
 
-//항해번호 0026E
-var latlngs2 = [
-[ 35.38 , 129.42 ],
-[ 35.2272222 , 129.4275 ],
-[ 34.535 , 128.8705556 ],
-[ 34.4547222 , 128.7394444 ],
-[ 34.4561111 , 128.0902778 ],
-[ 34.6016667 , 127.9652778 ],
-[ 34.6866667 , 127.9438889 ],
-[ 34.7305556 , 127.8472222 ],
-[ 34.75 , 127.83 ],
-];
 
 </script>
 
@@ -72,6 +60,8 @@ var latlngs2 = [
 		}
 	});
 
+
+
 	var pointIcon = L.Icon.extend({
 		options: {
 			 shadowUrl: "{% static 'images/point.png' %}",
@@ -80,16 +70,25 @@ var latlngs2 = [
 		}
 	});
 
-		var red_pointIcon = L.Icon.extend({
+	var MarkerIcon = L.Icon.extend({
 		options: {
-			shadowUrl: "{% static 'images/red_point.png' %}",
-			iconSize:     [1, 1],
+			iconSize:     [81, 78],
 
 		}
 	});
 
 
-	var greenIcon = new LeafIcon({iconUrl: 'images/leaf-green.png'}),
+		var red_pointIcon = L.Icon.extend({
+		options: {
+			shadowUrl: "{% static 'images/red_point.png' %}",
+			iconSize:     [5, 5],
+
+		}
+	});
+
+<!--    greenIcon = new LeafIcon({iconUrl: '/static/images/leaf-green.png'}),-->
+ 	    var greenIcon = new LeafIcon({iconUrl: "{% static 'images/leaf-green.png' %}"}),
+        markerIcon = new MarkerIcon({iconUrl: "{% static 'images/marker-icon.png' %}"}),
 		redIcon = new LeafIcon({iconUrl: 'images/leaf-red.png'}),
 		orangeIcon = new LeafIcon({iconUrl: 'images/leaf-orange.png'}),
 
@@ -98,8 +97,8 @@ var latlngs2 = [
 
 
     var map = L.map('map', {
-        center: [20 , 126.0],
-        zoom: 4,
+        center: [34 , 128.0],
+        zoom: 8,
         maxZoom: 16,
         minZoom: 3,
         zoomControl: true,
@@ -119,17 +118,22 @@ attribution: 'Tiles &copy; Esri',
 
 
 
+{% for barrier in barriers_list %}
+var circle = L.circle({{barrier}}, {
+    color: 'blue',
+    fillColor: '#f03',
+    fillOpacity: 0.1,
+    radius: 300
+}).addTo(map);
 
-L.marker([ 34.62 , 128.73 ],{icon: pointIcon}).addTo(map);
-L.marker([ 34.81 , 129.08 ],{icon: pointIcon}).addTo(map);
-
-
-
-
-
-{% for marker in markers %}
-{{marker}}
 {% endfor %}
+
+
+
+<!--마커표시 -->
+<!--{% for marker in markers %}-->
+<!--{{marker|safe}}-->
+<!--{% endfor %}-->
 
 
 
@@ -142,29 +146,31 @@ var polyline = L.polyline(dijkstra_data, {color: 'cyan'}).addTo(map);
 
 </script>
 
+
+
 <div class="row mt-5">
-    <h3> {{title}} 최단경로 </h3>
+    <h3> {{title}} 최단경로 (cyan) </h3>
     <ul>
-{% for passage in passages %}
+{% for passage in final_route_distance %}
    <li> {{passage}} </li>
 {% endfor %}
         </ul>
 </div>
 
-<div class="row mt-5">
-    <h3> {{title}} 항로 </h3>
-{% for key,value in passage_plan_dict.items %}
+
+
+  <div class="row mt-5">
+    <h3> {{title}}항로 </h3>
+{% for key,value in passage_plan_dict_distance.items %}
     <ul>
-       항로번호{{key | slice:":5"}}
+       항로번호 {{key | slice:":6"}} ({{key | slice:"7:"}})
     {% for passage_data in value %}
         <li> {{passage_data}} </li>
     {% endfor %}
     </ul>
 {% endfor %}
 
+
 </div>
-
-
-
 
 {% endblock %}

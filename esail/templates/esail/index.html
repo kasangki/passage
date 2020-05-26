@@ -1,16 +1,90 @@
 {% extends "./base.html" %}
 {% block contents %}
+
+<script lang="javascript">
+
+
+function getSelectStartValue(frm)
+{
+
+    start_value = frm.start_code.options[frm.start_code.selectedIndex].value;
+
+    $.ajax({
+        type:"get",
+        async:true,
+        url: "/esail/port_code/"+start_value,
+        dataType:"json",
+        success: function(data) {
+           temp = data['start_port_code']
+
+           var str='<ul> <li>도착항</li> <form> <select name="dest_code" id="dest_code"> <option value="none">=== 선택 ===</option> '
+           for(var name in temp) {
+               str += ' <option value= '+ name + ' > '+ temp[name]+' </option> ';
+           }
+           str +=  ' </select> </form> </ul> '
+           $('#dest_port').html(str)
+
+        }
+        });
+
+
+}
+
+
+function makePassagePlan()
+{
+
+    start_code = $('#start_code').val();
+    dest_code = $('#dest_code').val();
+    location.href="/esail/passage/"+start_code+"/"+dest_code;
+
+}
+
+function makeAllPassagePlan()
+{
+    alert("전체항로")
+    location.href="/esail/passageAll/";
+
+}
+
+
+</script>
+
+
+
+
 <div class="row mt-5">
   <div class="col-12 text-center">
     <h1>Passage Plan</h1>
   </div>
 </div>
 <div class="row mt-5">
-    <a  href="/esail/passage/1">울산 -> 광양</a>
+
+    <ul>
+        <li>출발항</li>
+    <form>
+      <select name="start_code" id="start_code"  onchange="getSelectStartValue(this.form)">
+          <option value="none">=== 선택 ===</option>
+          {% for key,value in start_port_code.items %}
+              <option value="{{key}}">{{value}}</option>
+          {% endfor %}
+      </select>
+    </form>
+    </ul>
+</div>
+<div class="row mt-5" id="dest_port">
 </div>
 <div class="row mt-5">
-    <a  href="/esail/passage/2">광양 -> 싱가폴</a>
-
+<input type="button" value ="추천항로생성" onclick="javascript:makePassagePlan()">
 </div>
+<div class="row mt-5">
+<input type="button" value ="전체항로생성" onclick="javascript:makeAllPassagePlan()">
+</div>
+
+
+
+
+
+
 
 {% endblock %}
