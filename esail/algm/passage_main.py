@@ -1,3 +1,7 @@
+import os
+
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 import sys
 sys.path.append('./')
 from .post_database import PostDatabase
@@ -16,25 +20,30 @@ def makePassagePlanAll():
     start_port_codes = post_db.get_start_port_code()
     start_port_codes_list = start_port_codes['PORT_CODE'].tolist()
     i = 0
+    post_db.get_connection()
     while i < len(start_port_codes_list) :
+        post_db = PostDatabase()
         start_port_code = start_port_codes_list[i]
         dest_port_codes = post_db.get_dest_port_code(start_port_code=start_port_code)
         dest_port_codes_list = dest_port_codes['PORT_CODE'].tolist()
         j = 0
-        print("출발항구 =================================================> ",start_port_code)
         while j < len(dest_port_codes_list) :
+            post_db = PostDatabase()
             dest_port_code = dest_port_codes_list[j]
-            print("출발항구 =================================================> ", start_port_code)
-            print("도착항구 =================================================> ", dest_port_code)
             main(start_port_code,dest_port_code)
             j = j + 1
+            post_db.close_connection()
         i = i + 1
+        post_db.close_connection()
+    post_db.close_connection()
+
 
 
 def main(start_port_code,dest_port_code):
 
     # TB_PORT_CODE 테이블 저장 시작
     post_db = PostDatabase()
+
     port_code_df = post_db.get_start_dest_port(start_port_code,dest_port_code)
     if(len(port_code_df) == 0) :
         return None
@@ -61,6 +70,7 @@ def main(start_port_code,dest_port_code):
 
 
     wave_info_csv = 'esail/algm/data/wave_info_KRUSN_KRKAN.csv'  #
+    #wave_info_csv = 'data/wave_info_KRUSN_KRKAN.csv'  #
     # 파고정보
     interval = 0.1
     depth = -20
@@ -167,6 +177,7 @@ def main(start_port_code,dest_port_code):
 
     search_count = len(voyage_info_seq_df)
     print("항로조회갯수===",search_count)
+    print(passage_plan_df)
 
     "============================================================================"
     "항로별 노드저장"
@@ -193,6 +204,7 @@ def main(start_port_code,dest_port_code):
     "============================================================================"
     "등록된 모든 노드들의 최단경로"
     "============================================================================"
+    print("start_point = ",start_point,"start_point = ",dest_point)
     route_set = dijk.shortest_path(start_point, dest_point)
 
     #print(route_set)
@@ -206,7 +218,7 @@ def main(start_port_code,dest_port_code):
     i = 0
     total_dist = 0
     total_time = 0
-    print("경로집합 ===> ",route_set)
+    #print("경로집합 ===> ",route_set)
     if(route_set == None):
         return None
     while i < len(route_set) - 1:
@@ -314,7 +326,7 @@ def main(start_port_code,dest_port_code):
     "dijkstra와 AStar 조합 결과"
 
     final_route = []
-    print("경로집합 === >",route_set)
+    #print("경로집합 === >",route_set)
     for route in route_set:
         if (len(route) > 2):
             for rt in route:
@@ -341,7 +353,7 @@ def main(start_port_code,dest_port_code):
     final_route_text = []
     final_route_marker = []
     for passage_plan in final_route:
-        print("경도 ===== ",passage_plan[1])
+
         longitude_temp = passage_plan[1]  # 경도가 마이너스를 360도 더해서 처리
         if longitude_temp <= 0:
             longitude_temp = longitude_temp + 360
@@ -426,4 +438,6 @@ def main(start_port_code,dest_port_code):
     #     i += 1
 
 
-makePassagePlanAll()
+#makePassagePlanAll()
+#main('KRUSN','KRKAN')
+#main('KRMAS','KRMOK')

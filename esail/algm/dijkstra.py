@@ -18,7 +18,8 @@ from . import util
  :return: 
  """
 #BARRIERS_DISTANCE = 0.000000001
-BARRIERS_DISTANCE = 0.0056
+#BARRIERS_DISTANCE = 0.0056   # 임의로 주석처리
+BARRIERS_DISTANCE = 0.000000001    #
 
 class Dijkstra :
     def __init__(self):
@@ -386,8 +387,10 @@ class Dijkstra :
         #voyage_df = passage_plan_df['voyage_no'].drop_duplicates()  # 항차수번호 KRUSN_KRKAN.csv 파일 항차수 컬럼 추가
 
         #voyage_no_arr = np.array(voyage_df.iloc[:, 0:1])
+
         voyage_no_arr = np.array(voyage_info_seq_df)
         print("항로갯수 ===>",len(voyage_no_arr))
+
         #passage_plan_df = pd.read_csv('KRUSN_KRKAN.csv', index_col='voyage_no')
 
         #passage_plan_df.set_index('voyage_no', inplace=True)
@@ -401,7 +404,7 @@ class Dijkstra :
              #     continue
 
              voyage_no_start_df = round(passage_plan_df.loc[voyage_no_start],7)
-             print(voyage_no_start)
+             print(voyage_no_start,'     ', str(i+1))
              "항로생성"
              #self.make_start_to_end_graph(voyage_no_start_df)
              j = i + 1
@@ -424,6 +427,7 @@ class Dijkstra :
                  #self.make_start_to_end_graph(voyage_no_start_df,voyage_no_dest_df)
                  #self.make_start_to_end_graph(voyage_no_dest_df)
                  "직선의 방정식 교점 구한후 그래프에 추가"
+
                  self.add_cross_point(voyage_no_start_df, voyage_no_dest_df)
 
                  j += 1

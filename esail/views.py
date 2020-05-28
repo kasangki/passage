@@ -53,7 +53,7 @@ def passage(request,start_port_code,dest_port_code):
     #            'final_route_distance':final_route_distance,
     #            'passage_plan_dict_distance':passage_plan_dict_distance
     #           }
-
+    print(context)
     return render(request, 'esail/passage.html', context)
 
 

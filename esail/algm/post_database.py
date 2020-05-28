@@ -16,7 +16,8 @@ class PostDatabase:
         self.conn = postgress.connect(conn_string)
         self.cur = self.conn.cursor()
 
-
+    def close_connection(self):
+        self.conn.close()
 
     """
      데이터베이스 연결
@@ -81,7 +82,9 @@ class PostDatabase:
               , start_port 
               FROM voyage_info                
               WHERE start_port != ''
-              AND START_port >= 'BUS'
+              AND START_port >= 'A'
+              --AND START_PORT < 'B'
+              AND deleted_yn = 'N'
               ORDER BY start_port """
         self.cur.execute(sql)
         result = self.cur.fetchall()
@@ -93,14 +96,18 @@ class PostDatabase:
      """
     def get_dest_port_code(self,start_port_code):
 
-        sql = 'SELECT DISTINCT("dest_portUnLoCode")' \
-              ', dest_port ' \
-              ' FROM voyage_info ' \
-              ' WHERE "start_portUnLoCode" = \''+start_port_code+'\'' \
-              ' and start_port != \'''\'' \
-              ' and dest_port != \'''\'' \
-              ' ORDER BY dest_port'
-        self.cur.execute(sql)
+        sql =  """
+                SELECT DISTINCT("dest_portUnLoCode")
+                , dest_port 
+                FROM voyage_info 
+                WHERE "start_portUnLoCode" = %s
+                  AND start_port != %s
+                  AND dest_port != %s
+                  AND deleted_yn = 'N'
+               --   AND dest_port >= 'PAPC'
+                  ORDER BY dest_port
+               """
+        self.cur.execute(sql,(start_port_code,'',''))
         result = self.cur.fetchall()
         return pd.DataFrame(result,columns=['PORT_CODE','PORT_NAME'])
 
@@ -108,29 +115,33 @@ class PostDatabase:
 
     def get_start_dest_port(self, start_port_code, dest_port_code):
 
-        sql = 'SELECT aa.voyage_info_seq' \
-              '    , aa.seq' \
-              '	   , aa.latitude' \
-              '	   , aa.longitude ' \
-              '    , bb.start_port ' \
-		      '    , bb.dest_port ' \
-              '    , bb."start_portUnLoCode" '\
-              '    , bb."dest_portUnLoCode" '  \
-              '    FROM voyage_passage_plan aa, voyage_info bb'  \
-              '    WHERE voyage_info_seq = (SELECT  min(b.voyage_info_seq)' \
-              '    FROM voyage_info a, voyage_passage_plan b' \
-              '    WHERE a.seq = b.voyage_info_seq' \
-              '    AND a."start_portUnLoCode" = \''+start_port_code+'\'' \
-              '    AND a."dest_portUnLoCode" = \''+dest_port_code+'\'' \
-              '    AND b.type = \'RWP\')' \
-              '    AND TYPE=\'RWP\'' \
-              '    and bb.start_port != \'''\'' \
-              '    and bb.dest_port != \'''\'' \
-              '    AND aa.voyage_info_seq = bb.seq'
+
+        sql = """
+               SELECT aa.voyage_info_seq
+                      , aa.seq
+                        , aa.latitude
+                        , aa.longitude 
+                        , bb.start_port
+                        , bb.dest_port
+                        , bb."start_portUnLoCode"
+                        , bb."dest_portUnLoCode"
+                FROM voyage_passage_plan aa, voyage_info bb
+                WHERE voyage_info_seq = (SELECT  MIN(b.voyage_info_seq)
+                FROM voyage_info a, voyage_passage_plan b
+                WHERE a.seq = b.voyage_info_seq
+                AND a."start_portUnLoCode" = %s
+                AND a."dest_portUnLoCode" = %s
+                AND b.type = 'RWP'
+                AND a.deleted_yn = 'N'
+                ) 
+                AND TYPE='RWP'
+                AND bb.deleted_yn = 'N'
+                AND aa.voyage_info_seq = bb.seq
+              """
 
 
-        print(sql)
-        self.cur.execute(sql)
+
+        self.cur.execute(sql,(start_port_code, dest_port_code))
         result = self.cur.fetchall()
         return pd.DataFrame(result, columns=['voyage_info_seq', 'seq','latitude','longitude','start_port_name','dest_port_name','start_portUnLoCode','dest_portUnLoCode'])
 
@@ -241,6 +252,7 @@ class PostDatabase:
                         AND a."start_portUnLoCode" = %s
                         AND a."dest_portUnLoCode" = %s
                         AND b."type" = 'RWP'
+                        AND a.deleted_yn = 'N'
                         ORDER BY b.voyage_info_seq, b.seq
                        """
         self.cur.execute(sql,(start_portUnLoCode,dest_portUnLoCode))
@@ -277,6 +289,7 @@ class PostDatabase:
                                  AND A."start_portUnLoCode" =  %s
                                  AND A."dest_portUnLoCode" =  %s
                                  AND B."type" = 'RWP'
+                                 AND a.deleted_yn = 'N'
                                  ORDER BY B.voyage_info_seq, B.seq 
                              ) C
                            GROUP BY voyage_no,voyage_info_seq
@@ -286,6 +299,7 @@ class PostDatabase:
                             AND E.seq = F.voyage_info_seq
                             AND E."start_portUnLoCode" =  %s
                             AND E."dest_portUnLoCode" =  %s
+                            AND E.deleted_yn = 'N'
                             AND F."type" = 'RWP'   
                             AND D.voyage_no_count >= 2
                             ORDER BY voyage_info_seq     ,seq
