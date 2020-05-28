@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 import esail.algm.passage_main as passage_main
 from esail.algm.port_code_manage import Port_code_manage
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import simplejson as json
 from django.urls import reverse
 
@@ -42,7 +42,10 @@ def passage(request,start_port_code,dest_port_code):
         port_code_manage = Port_code_manage()
         start_port_code = port_code_manage.get_start_port_code()
         context = {'start_port_code': start_port_code}
-        return render(request, 'esail/index.html', context)
+        #return render(request, 'esail/index.html', context)
+        return JsonResponse({
+           'message': 'FAIL',
+        }, json_dumps_params={'ensure_ascii': True})
     #print("항로사전==>",passage_plan_dict)
 
     # context = {'passages': final_route,
@@ -53,9 +56,12 @@ def passage(request,start_port_code,dest_port_code):
     #            'final_route_distance':final_route_distance,
     #            'passage_plan_dict_distance':passage_plan_dict_distance
     #           }
-    print(context)
-    return render(request, 'esail/passage.html', context)
 
+    #return render(request, 'esail/passage.html', context)
+    #return render(request, '성공', "성공적")
+    return JsonResponse({
+        'message' : 'SUCCESS',
+     }, json_dumps_params = {'ensure_ascii': True})
 
 # 전체항로
 def passageAll(request):
